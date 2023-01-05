@@ -15,23 +15,23 @@
             <br><br>
 
             <button>Login</button>
-
-            <p>Email: {{email}}</p>
-            <p>Passsword: {{password}}</p>
         </form>
     </div>
 </template>
 
 <script>
+
     export default {
         data() {
             return {
                 email: "",
-                password: ""
-            }
+                password: "",
+                submitted: false
+            } 
         },
         methods: {
             handleSubmit(e) {
+
                 this.submitted = true
                 const {email, password} = this
 
@@ -39,8 +39,11 @@
                     return;
                 }
 
-                alert("Login button clicked!")
+                localStorage.setItem("login", "logged")
+
+                window.location.replace("http://localhost:5173/")
             }
         }
     }
+
 </script>

@@ -1,14 +1,12 @@
 <template>
-    <div>
-        <h4>{{ title }}</h4>
-    </div>
-    <br>
+    {{ title }}  by  {{ author }}
 </template>
 
 <script>
     export default {
         props: {
-            title: String,     
+            title: String,
+            author: String 
         }
     }
 </script>

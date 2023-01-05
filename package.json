@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "cirrus-ui": "^0.7.1",
+    "@vueuse/core": "^9.10.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

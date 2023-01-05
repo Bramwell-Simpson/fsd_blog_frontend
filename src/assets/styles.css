@@ -1,0 +1,11 @@
+router-link { 
+    color: white;
+    background-color: black;
+    text-decoration: none;
+}
+
+router-link:hover {
+    color: lightblue;
+    background-color: black;
+    text-decoration: none;
+}
