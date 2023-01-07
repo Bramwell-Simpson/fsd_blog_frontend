@@ -1,9 +1,9 @@
-const getAll = () => {
+const getComments = (id) => {
 
-    return fetch("http://localhost:3333/articles")
+    return fetch("http://localhost:3333/articles/" + id + "/comments/" )
     .then((response) => {
         if(response.status === 200) {
-            return response.json();
+            return response.json()
         }
         else {
             throw "Something went wrong"
@@ -18,12 +18,15 @@ const getAll = () => {
     })
 }
 
-const getOne = (id) => {
-
-    return fetch("http://localhost:3333/articles/" + id)
+const createComment = (id, comment) => {
+    return fetch("http://localhost:3333/articles/" + id + "/comments/", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({"comment_text": comment})
+    })
     .then((response) => {
-        if(response.status === 200) {
-            return response.json();
+        if(response.status === 201) {
+            return response.json()
         }
         else {
             throw "Something went wrong"
@@ -38,7 +41,7 @@ const getOne = (id) => {
     })
 }
 
-export default {
-    getAll: getAll,
-    getOne: getOne
+export default { 
+    getComments: getComments,
+    createComment: createComment
 }

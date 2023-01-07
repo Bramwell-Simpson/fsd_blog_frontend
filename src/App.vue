@@ -1,10 +1,12 @@
 <template>
-    <router-link to="/">Home</router-link>
-    <br>
-    <router-link v-if="checkedLogged() === false" to="/login">Login</router-link>
-    <router-link v-if="checkedLogged() === true" to="/dashboard">Dashboard</router-link>
-    <router-view></router-view>
-
+    <v-app>
+        <v-app-bar rounded>
+            <v-app-bar-title><router-link to="/">Home</router-link></v-app-bar-title>
+            <router-link v-show="checkedLogged() === false" to="/login"><v-btn variant="text">Login</v-btn></router-link>
+            <router-link v-show="checkedLogged() === true" to="/dashboard"><v-btn variant="text">Dashboard</v-btn></router-link>
+        </v-app-bar>
+        <router-view></router-view>
+    </v-app>
 </template>
 
 <script>

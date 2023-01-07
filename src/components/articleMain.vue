@@ -1,25 +1,75 @@
 <template>
-    <p>Testing</p>
+    <!--
+    <em v-if="loading && !error">Loading article...</em>
+
+    <h1>{{ article.title }}</h1>
+    <h3>{{ article.author }}</h3>
+    <p>{{ article.article_text }}</p>
+
+    <hr>
+
+    <CommentList></CommentList> -->
+
+    <v-main>
+        <v-container>
+            <v-row>
+                <v-col>
+                    <p v-if="loading && !error">Loading article...</p>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <p v-if="error != ''">{{ error }}</p>
+                </v-col>
+            </v-row>
+            
+            <v-row>
+                <v-col>
+                    <h2 class="text-h2 text-center">{{ article.title }}</h2>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <h3 class="text-h3 text-center text-medium-emphasis">By {{ article.author }}</h3>
+                    
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <p class=" articleText">{{ article.article_text }}</p>
+                </v-col>
+            </v-row>
+
+            <v-divider></v-divider>
+        </v-container>
+    </v-main>
 </template>
 
 
-<!--
+
 <script>
 
-    /*import articleData from "./article-preview.vue"
+    import articleService from "../services/Article.service";
+    import CommentList from "./commentList.vue"
 
-    export default {
-        
+    export default { 
         data() {
             return {
-                article: articleData.data
+                article: [],
+                error: [],
+                loading: true,
             }
         },
-        props: {
-            title: String,
-            author: String,
-            articleText: String
+        mounted() {
+            articleService.getOne(this.$route.params.id)
+            .then(article => {
+                this.article = article
+                this.loading = false
+            })
+            .catch(error => this.error = erorr);
+        },
+        components: {
+            CommentList
         }
-    } */
-
-</script> -->
+    }
+</script> 
