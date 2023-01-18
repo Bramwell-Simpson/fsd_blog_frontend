@@ -1,7 +1,6 @@
 <template>
-    <v-main style="/*background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)*/">
-        <v-container>
-            
+    <v-main>
+        <v-container id="">
             <v-row align="center" style="height: 100vh">
                 <v-col cols="12">
                     <h1 class="text-h1 text-center" >{{welcome_message}}</h1>
@@ -20,8 +19,9 @@
 </template>
 
 <script>
-
+    
     import Posts from "./Posts.vue"
+
 
     export default {
         data() {

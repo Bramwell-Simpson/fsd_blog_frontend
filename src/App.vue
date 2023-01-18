@@ -17,13 +17,13 @@
         methods: {
             checkedLogged() {
                 
-                const logged = useLocalStorage('login') 
+                let currToken = useLocalStorage('token')
 
-                if(logged.value === "logged") {
-                    return true;
+                if(currToken.value === "undefined") {
+                    return false;
                 }
                 else {
-                    return false;
+                    return true;
                 }
                 
             }

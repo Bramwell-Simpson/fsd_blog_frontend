@@ -11,13 +11,10 @@
 
                         <v-card-text>
                             <v-form @submit.prevent="handleSubmit">
-                                <!--<label for="email">Email: </label>
-                                <input type="email" name="email" v-model="email"/>-->
+
                                 <v-text-field v-model="email" label="Email" variant="outlined"></v-text-field>
                                 <div v-show="(submitted && !email)">Email is required</div>
 
-                                <!--<label for="password">Password: </label>
-                                <input type="password" name="password" v-model="password"/>-->
                                 <v-text-field v-model="password" label="Password" variant="outlined"></v-text-field>
                                 <div v-show="(submitted && !password)">Password is required</div>
 
@@ -34,12 +31,15 @@
 
 <script>
 
+    import UserService from '../services/User.service'
+
     export default {
         data() {
             return {
                 email: "",
                 password: "",
-                submitted: false
+                submitted: false,
+                error: []
             } 
         },
         methods: {
@@ -52,9 +52,15 @@
                     return;
                 }
 
-                localStorage.setItem("login", "logged")
+                UserService.authUser(email, password)
+                .then(user => {
 
-                window.location.replace("http://localhost:5173/")
+                    if(user.session_token != "") {
+                        localStorage.setItem("token", user.session_token)
+                        window.location.assign("http://localhost:5173/")
+                    }
+                })
+                .catch(error => this.error = error)
             }
         }
     }
