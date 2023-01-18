@@ -10,6 +10,7 @@
                             <v-tab value="two">Add a user</v-tab>
                             <v-tab value="three">Create an article</v-tab>
                             <v-tab value="four">Delete an article</v-tab>
+                            <v-tab value="five">Update an article</v-tab>
                         </v-tabs>
                     
                         <v-card-text>
@@ -27,13 +28,17 @@
                                 </v-window-item>
 
                                 <v-window-item value="four">
-                                    Four
+                                    <DeleteArticle></DeleteArticle>
+                                </v-window-item>
+
+                                <v-window-item value="five">
+                                    <UpdateArticle></UpdateArticle>
                                 </v-window-item>
                             </v-window>
                         </v-card-text>
-                        <v-card-action>
-                            <v-btn @click="logout">Logout</v-btn>
-                        </v-card-action>
+                        <v-card-actions>
+                            <v-btn block variant="outlined" color="error" @click="logout">Logout</v-btn>
+                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -49,6 +54,8 @@
     import UserList from "./components/userList.vue"
     import CreateUser from "./components/addUser.vue"
     import CreateArticle from "./components/createArticle.vue"
+    import DeleteArticle from "./components/deleteArticle.vue"
+    import UpdateArticle from "./components/updateArticle.vue";
 
     export default {
         data: () => ({
@@ -70,7 +77,9 @@
         components: {
             UserList,
             CreateUser,
-            CreateArticle
+            CreateArticle,
+            DeleteArticle,
+            UpdateArticle
         }
     }
 </script>

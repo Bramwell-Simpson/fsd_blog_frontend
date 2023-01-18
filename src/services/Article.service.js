@@ -76,6 +76,35 @@ const deleteArticle = (authToken, id) => {
     })
     .then((response) => {
         if(response.status === 200) {
+            return response
+        }
+        else {
+            throw "Something went wrong"
+        }
+    })
+    .then((resJson) => {
+        return resJson
+    })
+    .catch((error) => {
+        return Promise.reject(error)
+    })
+}
+
+const updateArticle = (authToken, id, title, author, article_text) => {
+    return fetch("http://localhost:3333/articles/" + id, {
+        method: "PATCH",
+        headers: {
+            "X-Authorization": authToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "title": title,
+            "author": author,
+            "article_text": article_text
+        })
+    })
+    .then((response) => {
+        if(response.status === 200) {
             return response.json()
         }
         else {
@@ -94,5 +123,6 @@ export default {
     getAll: getAll,
     getOne: getOne,
     addArticle: addArticle,
-    deleteArticle: deleteArticle
+    deleteArticle: deleteArticle,
+    updateArticle: updateArticle
 }
