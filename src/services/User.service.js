@@ -11,7 +11,7 @@ const authUser = (email, password) => {
         if(response.status === 200) {
             return response.json()
         }
-        else if(response.status === 401) {
+        else if(response.status === 400) {
             throw "Wrong email/password"
         }
         else {
@@ -45,7 +45,7 @@ const getAllUsers = (authToken) => {
     })
     .catch((error) => {
         console.log("err", error)
-        return Promise.reject(error)
+        return Promise.reject(error.text())
     })
 }
 

@@ -4,14 +4,14 @@
             <v-row align="center" style="height: 100vh">
                 <v-col cols="12">
                     <h1 class="text-h1 text-center" >{{welcome_message}}</h1>
-                    <h2 class="text-h2 text-center text-medium-emphasis">Hi, ec:mr</h2>
+                    <a href="#articles"><h3 class="text-h3 text-center text-medium-emphasis">Read some of our articles</h3></a>
                 </v-col>
             </v-row>
         </v-container>
         <v-container>
             <v-row>
                 <v-col>
-                    <Posts/>
+                    <Posts id="articles"></Posts>
                 </v-col>
             </v-row>
         </v-container>  

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>{{comment_text}} - {{date_published}}</p>
+        <p>{{ id }}: {{comment_text}} - {{date_published}}</p>
     </div>
 </template>
 
@@ -8,7 +8,8 @@
     export default {
         props: {
             comment_text: String,
-            date_published: String
+            date_published: String,
+            id: String,
         }
     }
 </script>

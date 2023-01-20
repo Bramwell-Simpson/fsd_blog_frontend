@@ -12,11 +12,9 @@
                         <v-card-text>
                             <v-form @submit.prevent="handleSubmit">
 
-                                <v-text-field v-model="email" label="Email" variant="outlined"></v-text-field>
-                                <div v-show="(submitted && !email)">Email is required</div>
+                                <v-text-field :rules="[required]" v-model="email" label="Email" variant="outlined"></v-text-field>
 
-                                <v-text-field v-model="password" label="Password" variant="outlined"></v-text-field>
-                                <div v-show="(submitted && !password)">Password is required</div>
+                                <v-text-field :rules="[required]" v-model="password" label="Password" variant="outlined"></v-text-field>
 
                                 <v-btn block @click="handleSubmit" variant="outlined">Login</v-btn>
                             </v-form>
@@ -61,6 +59,9 @@
                     }
                 })
                 .catch(error => this.error = error)
+            },
+            required (v) {
+                return !!v || 'Field is required'
             }
         }
     }

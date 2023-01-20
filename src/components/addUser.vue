@@ -1,7 +1,7 @@
 <template>
     <v-card variant="outlined" class="mx-auto" width="400">
         <v-card-title class="text-center">
-            Login
+            Add a user
         </v-card-title>
     
         <v-card-text>

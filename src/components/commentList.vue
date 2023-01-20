@@ -1,22 +1,35 @@
 <template>
     <em v-if="loading && !error">Loading comments...</em>
-    <div>
-        <h1>Comments: </h1>
-        <CreateComment></CreateComment>
-        <comment v-for="(comment, index) in comments" :key="index"
-            :comment_text="comment.comment_text"
-            :date_published="comment.date_published"
-        />
-    </div>
-    <p v-show="error == '' && comments == ''">No comments yet</p>
-    <p v-if="error != ''">{{ error }}</p>
+    <v-row>
+        <v-col>
+            <h1>Comments: </h1>
+            <CreateComment></CreateComment>
+
+            <v-divider class="mb-4"></v-divider>
+            <comment v-for="(comment, index) in comments" :key="index"
+                :id="comment.comment_id"
+                :comment_text="comment.comment_text"
+                :date_published="comment.date_published"
+            />
+
+            <p v-show="error == '' && comments == ''">No comments yet</p>
+            <p v-if="error != ''">{{ error }}</p>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col>
+            <DeleteComment></DeleteComment>
+        </v-col>
+    </v-row>
+
 </template>
 
 <script>
 
     import comment from "./comment.vue"
     import commentService from "../services/Comment.service"
-    import CreateComment from "../components/createComment.vue"
+    import CreateComment from "./createComment.vue"
+    import DeleteComment from "./deleteComment.vue"
 
     export default {
         data() {
@@ -29,6 +42,7 @@
         mounted() {
             commentService.getComments(this.$route.params.id)
             .then(comments => {
+                this.comments = []
                 this.comments = comments
                 this.loading = false
             })
@@ -36,7 +50,8 @@
         },
         components: {
             comment,
-            CreateComment
+            CreateComment,
+            DeleteComment
         }
     }
 

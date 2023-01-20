@@ -1,15 +1,18 @@
 <template>
-    <form @submit.prevent="submitComment">
-        <label for="comment">Write a comment: </label>
-        <input v-model="newComment" name="comment" >
-        <br>
-        <button>Comment</button>
-    </form>
+    <v-form @submit.prevent="submitComment">
+        <v-text-field :rules="[required]" variant="outlined" v-model="newComment" label="Write a comment" name="comment"></v-text-field>
+        <v-btn variant="outlined" @click="submitComment">Comment</v-btn>
+    </v-form>
 
-    <p>{{ newComment }}</p>
-
-    <p v-if="commentSuccessful">Comment added!</p>
-    <p v-if="error != ''">{{ error }}</p>
+    <v-snackbar v-model="snackbar">
+        {{ serverResponse }}
+    
+        <template v-slot:actions>
+            <v-btn color="purple" variant="text" @click="snackbar = false">
+                Close
+            </v-btn>
+        </template>
+    </v-snackbar>
 </template>
 
 <script>
@@ -21,16 +24,28 @@
             return {
                 newComment: "",
                 commentSuccessful: "",
-                error: []
+                error: [],
+
+                snackbar: false,
+                serverResponse: ""
             }
         },
         methods: {
             submitComment(e) {
+
+                if(this.newComment === "") {
+                    return;
+                }
+
                 commentService.createComment(this.$route.params.id, this.newComment)
                 .then(commentSuccesful => {
-                    this.commentSuccessful = this.commentSuccessful
+                    this.serverResponse = commentSuccesful
+                    this.snackbar = true;
                 })
                 .catch(error => this.error = error)
+            },
+            required (v) {
+                return !!v || 'Field is required'
             }
         }
     }

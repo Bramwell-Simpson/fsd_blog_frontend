@@ -6,6 +6,6 @@ a {
     text-decoration: none;
 }
 
-p.articleText {
-    font-size: large;
+html {
+    scroll-behavior: smooth;
 }

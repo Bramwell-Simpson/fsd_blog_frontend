@@ -1,15 +1,4 @@
 <template>
-    <!--
-    <em v-if="loading && !error">Loading article...</em>
-
-    <h1>{{ article.title }}</h1>
-    <h3>{{ article.author }}</h3>
-    <p>{{ article.article_text }}</p>
-
-    <hr>
-
-    <CommentList></CommentList> -->
-
     <v-main>
         <v-container>
             <v-row>
@@ -36,11 +25,13 @@
             </v-row>
             <v-row>
                 <v-col>
-                    <p class=" articleText">{{ article.article_text }}</p>
+                    <p class="articleText">{{ article.article_text }}</p>
                 </v-col>
             </v-row>
 
             <v-divider></v-divider>
+
+            <CommentList></CommentList>
         </v-container>
     </v-main>
 </template>

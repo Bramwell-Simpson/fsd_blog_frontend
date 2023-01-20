@@ -26,10 +26,10 @@ const createComment = (id, comment) => {
     })
     .then((response) => {
         if(response.status === 201) {
-            return response.json()
+            return response.text()
         }
-        else {
-            throw "Something went wrong"
+        else if(response.status === 400) {
+            throw "Comment cannot be empty"
         }
     })
     .then((resJson) => {
@@ -41,7 +41,29 @@ const createComment = (id, comment) => {
     })
 }
 
+const deleteComment = (authtoken, cmid) => {
+    return fetch("http://localhost:3333/comments/" + cmid, {
+        method: "DELETE",
+        headers: {"X-Authorization": authtoken},
+    })
+    .then((response) => {
+        if(response.status === 200) {
+            return response.text();
+        }
+        else {
+            throw "Something went wrong"
+        }
+    })
+    .then((resJson) => {
+        return resJson
+    })
+    .catch((error) => {
+        return Promise.reject(error)
+    })
+}
+
 export default { 
     getComments: getComments,
-    createComment: createComment
+    createComment: createComment,
+    deleteComment: deleteComment
 }
