@@ -17,7 +17,7 @@
 
 <script>
     
-    import commentService from "../services/Comment.service"
+    import commentService from "../../services/Comment.service"
 
     export default {
         data() {
@@ -39,7 +39,7 @@
 
                 commentService.createComment(this.$route.params.id, this.newComment)
                 .then(commentSuccesful => {
-                    this.serverResponse = commentSuccesful
+                    this.serverResponse = "Comment Added!"
                     this.snackbar = true;
                 })
                 .catch(error => this.error = error)

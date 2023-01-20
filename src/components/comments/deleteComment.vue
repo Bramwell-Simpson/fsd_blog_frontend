@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import commentService from "../services/Comment.service"
+    import commentService from "../../services/Comment.service"
     import { useLocalStorage } from "@vueuse/core"
 
     export default {

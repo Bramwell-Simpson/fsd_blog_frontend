@@ -3,7 +3,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import Home from "../Home.vue"
 import Login from "../Login.vue"
 import Dashboard from "../Dashboard.vue"
-import ArticleMain from "../components/articleMain.vue"
+import ArticleMain from "../components/articles/articleMain.vue"
 
 const routes = [
     {path: "/", component: Home},

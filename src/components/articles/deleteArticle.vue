@@ -1,21 +1,15 @@
 <template>
     <v-card variant="outlined" class="mx-auto" width="400">
         <v-card-title class="text-center">
-            Add a user
+            Delete an Article
         </v-card-title>
     
         <v-card-text>
-            <v-form @submit.prevent="addUser">
+            <v-form @submit.prevent="deleteArticle">
                 
-                <v-text-field v-model="fname" label="First Name" variant="outlined"></v-text-field>
-
-                <v-text-field v-model="lname" label="Last name" variant="outlined"></v-text-field>
-
-                <v-text-field v-model="email" label="Email" variant="outlined"></v-text-field>
+                <v-text-field v-model="id" label="Article ID to Delete" variant="outlined"></v-text-field>
     
-                <v-text-field v-model="password" label="Password" variant="outlined"></v-text-field>
-    
-                <v-btn block @click="addUser" variant="outlined">Create User</v-btn>
+                <v-btn block @click="deleteArticle" color="warning" variant="outlined">Delete Article</v-btn>
             </v-form>
         </v-card-text>
     </v-card>
@@ -34,28 +28,24 @@
 <script>
 
     import { useLocalStorage } from '@vueuse/core';
-    import UserService from '../services/User.service';
+    import ArticleService from '../../services/Article.service';
 
     export default {
         data() {
             return {
-                fname: "",
-                lname: "",
-                email: "",
-                password: "",
+                id: "",
                 snackbar: false,
                 serverResponse: ""
             }
         },
         methods: {
-            addUser()
+            deleteArticle()
             {
-
                 let authToken = useLocalStorage("token");
 
-                UserService.addUser(authToken.value, this.fname, this.lname, this.email, this.password)
+                ArticleService.deleteArticle(authToken.value, this.id)
                 .then(serverResponse => {
-                    this.serverResponse = "User " + serverResponse.user_id + " has been added!"
+                    this.serverResponse = "The article has been deleted"
                     this.snackbar = true;
                 })
                 .catch(error => {

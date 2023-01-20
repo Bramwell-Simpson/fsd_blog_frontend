@@ -40,8 +40,8 @@
 
 <script>
 
-    import articleService from "../services/Article.service";
-    import CommentList from "./commentList.vue"
+    import articleService from "../../services/Article.service";
+    import CommentList from "../comments/commentList.vue"
 
     export default { 
         data() {

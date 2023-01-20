@@ -1,15 +1,21 @@
 <template>
     <v-card variant="outlined" class="mx-auto" width="400">
         <v-card-title class="text-center">
-            Delete an Article
+            Update an Article
         </v-card-title>
     
         <v-card-text>
-            <v-form @submit.prevent="deleteArticle">
+            <v-form @submit.prevent="updateArticle">
+
+                <v-text-field v-model="id" label="Article ID" variant="outlined"></v-text-field>
                 
-                <v-text-field v-model="id" label="Article ID to Delete" variant="outlined"></v-text-field>
+                <v-text-field v-model="title" label="Article Title (optional)" variant="outlined"></v-text-field>
+
+                <v-text-field v-model="author" label="Author (optional)" variant="outlined"></v-text-field>
+
+                <v-textarea v-model="text" label="Article Text (optional)" variant="outlined"></v-textarea>
     
-                <v-btn block @click="deleteArticle" color="warning" variant="outlined">Delete Article</v-btn>
+                <v-btn block @click="updateArticle" variant="outlined">Update Article</v-btn>
             </v-form>
         </v-card-text>
     </v-card>
@@ -28,25 +34,28 @@
 <script>
 
     import { useLocalStorage } from '@vueuse/core';
-    import ArticleService from '../services/Article.service';
+import { toHandlers } from 'vue';
+    import ArticleService from '../../services/Article.service';
 
     export default {
         data() {
             return {
-                id: "",
+                "id": "",
+                "title": "",
+                "author": "",
+                "text": "",
                 snackbar: false,
                 serverResponse: ""
             }
         },
         methods: {
-            deleteArticle()
+            updateArticle()
             {
-
                 let authToken = useLocalStorage("token");
 
-                ArticleService.deleteArticle(authToken.value, this.id)
+                ArticleService.updateArticle(authToken.value, this.id, this.title, this.author, this.text)
                 .then(serverResponse => {
-                    this.serverResponse = "The article has been deleted"
+                    this.serverResponse = "Article " + serverResponse.article_id + " has been updated!"
                     this.snackbar = true;
                 })
                 .catch(error => {

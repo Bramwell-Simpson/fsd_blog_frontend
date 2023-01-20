@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import UserService from '../services/User.service';
+    import UserService from '../../services/User.service';
     import { useLocalStorage } from '@vueuse/core';
 
     export default {

@@ -27,7 +27,7 @@
 <script>
 
     import comment from "./comment.vue"
-    import commentService from "../services/Comment.service"
+    import commentService from "../../services/Comment.service"
     import CreateComment from "./createComment.vue"
     import DeleteComment from "./deleteComment.vue"
 

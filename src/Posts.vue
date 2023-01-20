@@ -73,12 +73,3 @@
         }
     }
 </script>
-
-<!-- 
-    {
-        article_id: "1",
-    article_title: "article 1",
-    article_author: "author 1",
-    article_text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur odio quos earum. Ducimus expedita consectetur repudiandae quis reiciendis omnis veniam? Nemo, eligendi iure. Enim sed quibusdam aspernatur alias cumque vero! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore nostrum amet, expedita fugit nihil omnis at illo iste et alias esse ratione ullam aliquid iusto, praesentium quam. A, vel eos?"
-    }
--->
