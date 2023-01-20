@@ -27,6 +27,9 @@
                 }
                 
             }
+        },    
+        created(){
+            document.title = "FSD Blog"    
         }
     }
 </script>
